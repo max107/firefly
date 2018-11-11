@@ -1,0 +1,7 @@
+@mixin elevation($index, $dark: false) {
+  @if $dark {
+    box-shadow: nth($elevation-shadows-dark, $index);
+  } @else {
+    box-shadow: nth($elevation-shadows, $index);
+  }
+}

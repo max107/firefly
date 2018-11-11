@@ -1,0 +1,32 @@
+$grid-count: 10;
+
+.b-grid {
+  display: grid;
+
+  @for $i from 1 through $grid-count {
+    &--every-#{$i} {
+      grid-template-columns: repeat(#{$i}, 1fr);
+    }
+
+    &__item {
+      $color: rgba(#000, .1);
+      border: {
+        width: 1px;
+        style: solid;
+        color: transparent $color $color transparent;
+      }
+      padding: 1rem;
+      position: relative;
+
+      &--every-#{$i} {
+        &:nth-child(#{$i}n) {
+          border-right: 0;
+        }
+
+        &:nth-last-child(-n+#{$i}) {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}

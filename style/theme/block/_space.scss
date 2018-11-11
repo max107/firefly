@@ -1,0 +1,13 @@
+.space {
+  @each $prefix, $size in $flexy-block-space-sizes {
+    @if $prefix == default {
+      height: $size;
+    }
+
+    /* stylelint-disable */
+    &--#{$prefix} {
+      /* stylelint-enable */
+      height: $size;
+    }
+  }
+}

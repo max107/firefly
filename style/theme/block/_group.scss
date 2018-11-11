@@ -1,0 +1,19 @@
+.b-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+
+  &--between {
+    justify-content: space-between;
+  }
+
+  &--around {
+    justify-content: space-around;
+  }
+
+  & > .b-input-group {
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+}

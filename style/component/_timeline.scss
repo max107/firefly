@@ -1,0 +1,42 @@
+.b-timeline {
+  margin: 2rem 0;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: calc(1rem - 1px);
+    top: 0;
+    width: 2px;
+    height: 100%;
+    z-index: 1;
+    border-left: 2px dashed rgba(#000, .2);
+    content: ''
+  }
+
+  &__record {
+    position: relative;
+    margin: 0 0 2rem 3rem;
+  }
+
+  &__badge {
+    @include elevation(4);
+    position: absolute;
+    z-index: 2;
+    background: {
+      color: #fff;
+    }
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+    left: -3rem;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .4rem;
+  }
+
+  &__icon {
+
+  }
+}

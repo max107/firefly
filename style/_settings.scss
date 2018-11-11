@@ -1,0 +1,52 @@
+$flexy-font: $flexy-default-font !default;
+$flexy-font-mono: $flexy-default-font-mono !default;
+$flexy-heading-font: $flexy-font !default;
+$flexy-body-font-size: $flexy-default-font-size !default;
+$flexy-body-line-height: $flexy-default-line-height !default;
+$flexy-colors: $flexy-default-colors !default;
+$flexy-sizes: $flexy-default-sizes !default;
+$flexy-body-text-color: map-get($flexy-colors, text) !default;
+$flexy-heading-text-color: map-get($flexy-colors, heading) !default;
+$flexy-placeholder-color: map-get($flexy-colors, placeholder) !default;
+
+// TODO temp
+$black: map-get($flexy-colors, black);
+
+// Shadow opacities
+$pt-border-shadow-opacity: 0.1 !default;
+$pt-drop-shadow-opacity: 0.2 !default;
+$pt-dark-border-shadow-opacity: $pt-border-shadow-opacity * 2 !default;
+$pt-dark-drop-shadow-opacity: $pt-drop-shadow-opacity * 2 !default;
+
+$pt-divider-black: rgba($black, 0.15) !default;
+$pt-dark-divider-black: rgba($black, 0.4) !default;
+
+// Elevations
+// all shadow lists must be the same length to avoid flicker in transitions.
+$pt-elevation-shadow-0: 0 0 0 1px $pt-divider-black, 0 0 0 rgba($black, 0), 0 0 0 rgba($black, 0) !default;
+$pt-elevation-shadow-1: border-shadow($pt-border-shadow-opacity), 0 0 0 rgba($black, 0), 0 1px 1px rgba($black, $pt-drop-shadow-opacity) !default;
+$pt-elevation-shadow-2: border-shadow($pt-border-shadow-opacity), 0 1px 1px rgba($black, $pt-drop-shadow-opacity), 0 2px 6px rgba($black, $pt-drop-shadow-opacity) !default;
+$pt-elevation-shadow-3: border-shadow($pt-border-shadow-opacity), 0 2px 4px rgba($black, $pt-drop-shadow-opacity), 0 8px 24px rgba($black, $pt-drop-shadow-opacity) !default;
+$pt-elevation-shadow-4: border-shadow($pt-border-shadow-opacity), 0 4px 8px rgba($black, $pt-drop-shadow-opacity), 0 18px 46px 6px rgba($black, $pt-drop-shadow-opacity) !default;
+
+$pt-dark-elevation-shadow-0: 0 0 0 1px $pt-dark-divider-black, 0 0 0 rgba($black, 0), 0 0 0 rgba($black, 0) !default;
+$pt-dark-elevation-shadow-1: border-shadow($pt-dark-border-shadow-opacity), 0 0 0 rgba($black, 0), 0 1px 1px rgba($black, $pt-dark-drop-shadow-opacity) !default;
+$pt-dark-elevation-shadow-2: border-shadow($pt-dark-border-shadow-opacity), 0 1px 1px rgba($black, $pt-dark-drop-shadow-opacity), 0 2px 6px rgba($black, $pt-dark-drop-shadow-opacity) !default;
+$pt-dark-elevation-shadow-3: border-shadow($pt-dark-border-shadow-opacity), 0 2px 4px rgba($black, $pt-dark-drop-shadow-opacity), 0 8px 24px rgba($black, $pt-dark-drop-shadow-opacity) !default;
+$pt-dark-elevation-shadow-4: border-shadow($pt-dark-border-shadow-opacity), 0 4px 8px rgba($black, $pt-dark-drop-shadow-opacity), 0 18px 46px 6px rgba($black, $pt-dark-drop-shadow-opacity) !default;
+
+$elevation-shadows: (
+  $pt-elevation-shadow-0
+  $pt-elevation-shadow-1
+  $pt-elevation-shadow-2
+  $pt-elevation-shadow-3
+  $pt-elevation-shadow-4
+);
+
+$elevation-shadows-dark: (
+  $pt-dark-elevation-shadow-0
+  $pt-dark-elevation-shadow-1
+  $pt-dark-elevation-shadow-2
+  $pt-dark-elevation-shadow-3
+  $pt-dark-elevation-shadow-4
+);

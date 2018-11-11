@@ -1,0 +1,32 @@
+$card-padding: $pt-grid-size * 2 !default;
+$card-background-color: $white !default;
+$dark-card-background-color: $dark-gray4 !default;
+$flexy-segment-background-color: #fff !default;
+
+.b-segment {
+  margin: 0 0 1rem 0;
+  border-radius: $pt-border-radius;
+  box-shadow: $pt-elevation-shadow-0;
+  background-color: $flexy-segment-background-color;
+  padding: $card-padding;
+  transition: transform ($pt-transition-duration * 2) $pt-transition-ease,
+  box-shadow ($pt-transition-duration * 2) $pt-transition-ease;
+
+  &--interactive {
+    &:hover {
+      box-shadow: $pt-elevation-shadow-3;
+    }
+
+    &:active {
+      opacity: 0.9;
+      box-shadow: $pt-elevation-shadow-1;
+      transition-duration: 0s;
+    }
+  }
+
+  @for $index from 1 through length($elevation-shadows) {
+    &--elevation-#{$index - 1} {
+      @include elevation($index);
+    }
+  }
+}

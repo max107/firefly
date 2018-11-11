@@ -1,0 +1,17 @@
+.more {
+  background: {
+    color: #f1f1f1;
+  }
+  display: flex;
+  border-radius: .275em;
+  cursor: pointer;
+  align-items: center;
+  width: auto;
+  padding: 0 .5em;
+  color: flexy-color(text);
+
+  &__icon {
+    height: 24px;
+    width: 24px;
+  }
+}

@@ -1,0 +1,34 @@
+$non-ideal-state-icon: flexy-color(error);
+$non-ideal-state-title: flexy-color(text);
+$non-ideal-state-text: flexy-color(placeholder);
+
+.non-ideal-state {
+  &__icon {
+    user-select: none;
+    margin: 0 auto 1rem;
+    display: block;
+    width: 48px;
+    height: 48px;
+    stroke: $non-ideal-state-icon;
+
+    &--success {
+      stroke: flexy-color(success);
+    }
+
+    &--error {
+      stroke: flexy-color(error);
+    }
+  }
+
+  &__title {
+    color: $non-ideal-state-title;
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  &__text {
+    color: $non-ideal-state-text;
+    text-align: center;
+  }
+}

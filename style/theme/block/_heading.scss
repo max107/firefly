@@ -1,0 +1,42 @@
+.b-heading {
+}
+
+@mixin flexy-heading {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &.b-heading {
+      @extend .b-heading;
+      @content;
+    }
+  }
+
+  .b-heading {
+    &--xxlarge {
+      font-size: flexy-size(xxlarge);
+    }
+
+    &--xlarge {
+      font-size: flexy-size(xlarge);
+    }
+
+    &--large {
+      font-size: flexy-size(large);
+    }
+
+    &--medium {
+      font-size: flexy-size(medium);
+    }
+
+    &--small {
+      font-size: flexy-size(small);
+    }
+
+    &--xsmall {
+      font-size: flexy-size(xsmall);
+    }
+  }
+}

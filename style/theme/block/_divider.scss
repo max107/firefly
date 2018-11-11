@@ -1,0 +1,35 @@
+$flexy-block-divider-color: rgba(#000, .1) !default;
+$flexy-block-divider-sizes: (default: 2, large: 3, hero: 4) !default;
+
+.b-divider {
+  @include clearfix;
+
+  border: {
+    width: 1px 0 0 0;
+    style: solid;
+    color: $flexy-block-divider-color;
+  }
+  margin: 1em 0;
+  line-height: 1;
+  height: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(#000, 0.85);
+  user-select: none;
+  font-size: 1rem;
+
+  @each $name, $size in $flexy-block-divider-sizes {
+    $offset: base-spacing($size);
+
+    @if $name == 'default' {
+      margin: ($offset / 2) 0;
+    }
+
+    /* stylelint-disable */
+    &--#{$name} {
+      /* stylelint-enable */
+      margin: ($offset / 2) 0;
+    }
+  }
+}

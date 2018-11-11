@@ -1,0 +1,106 @@
+@import "mixins";
+@import "react-transition";
+@import "variables";
+
+.b-dialog {
+  &__dialog {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    border-radius: 4px;
+    box-shadow: $pt-dialog-box-shadow;
+    background: $light-gray4;
+    width: $pt-grid-size * 50;
+    padding-bottom: $pt-grid-size * 2;
+    pointer-events: all;
+    user-select: text;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__container {
+    $dialog-transition-props: (
+      opacity: (0, 1),
+      transform: (scale(0.5), scale(1))
+    );
+
+    @include react-transition(
+      "b-overlay",
+      $dialog-transition-props,
+      $duration: $pt-transition-duration * 3,
+      $easing: $pt-transition-ease-bounce,
+      $before: "&",
+      $after: "> .b-dialog__dialog"
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    margin: 1rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 1rem 0;
+    border-top: 1px solid rgba(#000, .1);
+
+    .b-button {
+      margin-left: .5rem;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 1px 0 rgba(#000, .1);
+    background-color: #fff;
+    min-height: 1rem;
+    padding: 1rem;
+
+    .b-icon {
+      flex: 0 0 auto;
+      margin-right: 1rem / 2;
+      color: #353535;
+    }
+  }
+
+  &__title {
+    @include overflow-ellipsis();
+    flex: 1 1 auto;
+    font-weight: 500;
+    margin: 0;
+    line-height: inherit;
+
+    &:last-child {
+      margin-right: 1rem;
+    }
+  }
+
+  &__close {
+    // large icon with interactive colors
+    flex: 0 0 auto;
+
+    // button reset
+    border: none;
+    background: none;
+
+    cursor: pointer;
+
+    width: 32px;
+    height: 32px;
+    border-radius: 4px 4px;
+  }
+}

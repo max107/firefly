@@ -1,0 +1,51 @@
+$flexy-default-font-boilerplate: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$flexy-default-font: $flexy-default-font-boilerplate;
+$flexy-default-font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$flexy-default-font-size: 16px;
+$flexy-default-line-height: 1.5;
+$flexy-default-enable-outline: true !default;
+$flexy-default-colors: (
+  default: #0069ff,
+  disabled: #f0f2f7,
+  white: #fff,
+  gray: #f8f9fa,
+  success: #27ae60,
+  caption: #6b6b6b,
+  error: #e74c3c,
+  //text: #393f49,
+  text: #212529,
+  heading: #000,
+  placeholder: #919191,
+  divider: rgba(#222426, 0.15),
+  black: #10161a
+);
+$flexy-default-sizes: (
+  xxlarge: 2.074em,
+  xlarge: 1.728em,
+  large: 1.44em,
+  medium: 1.2em,
+  small: 1em,
+  xsmall: 0.833em
+);
+// Максимальное количество колонок
+$flexy-grid-columns: 12 !default;
+// Отступы между колонками
+$flexy-grid-gutter: 0.5em !default;
+// Максимальная ширина контейнера
+$flexy-grid-wrapper-max-width: 1280px !default;
+// Минимальная ширина контейнера
+$flexy-grid-wrapper-min-width: auto !default;
+// Отступ между блоками
+$flexy-block-grid-padding: $flexy-grid-gutter !default;
+// Максимальное количество блоков
+$flexy-block-grid-count: $flexy-grid-columns !default;
+// Использовать модификаторы устройств
+$flexy-block-grid-use-devices: true !default;
+// Breakpoints
+$flexy-breakpoints: (
+  small: 0,
+  medium: 769px,
+  large: 992px,
+  xlarge: 1200px,
+  xxlarge: 1600px
+) !default;

@@ -1,0 +1,60 @@
+@mixin _block-grid-offset() {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0 ($flexy-block-grid-padding / 2) $flexy-block-grid-padding;
+}
+
+@mixin flexy-block-grid-flex() {
+  display: flex;
+  flex-wrap: wrap;
+
+  &--left {
+    justify-content: flex-start;
+  }
+
+  &--center {
+    justify-content: center;
+  }
+
+  &--space {
+    justify-content: space-between;
+  }
+
+  &--right {
+    justify-content: flex-end;
+  }
+
+  @each $name, $width in $flexy-breakpoints {
+    @for $i from 1 through $flexy-block-grid-count {
+      &--#{$name}-#{$i} > &__item {
+        @include breakpoint($name) {
+          width: (100% / $i);
+        }
+
+        &--only {
+          @include media(breakpoint-next-step($name)) {
+            width: 100% / $i;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin flexy-block-grid() {
+  list-style: none;
+  padding: 0;
+  margin: 0 (-$flexy-block-grid-padding/2);
+
+  & > &__item {
+    display: block;
+    height: auto;
+    @include _block-grid-offset;
+  }
+
+  @include flexy-block-grid-flex;
+}
+
+.b-block-grid {
+  @include flexy-block-grid();
+}

@@ -1,0 +1,132 @@
+$toast-height: $pt-button-height-large !default;
+$toast-min-width: $pt-grid-size * 30 !default;
+$toast-max-width: $pt-grid-size * 50 !default;
+$toast-margin: $pt-grid-size * 2 !default;
+
+.toast {
+  // toast transition properties
+  $enter-translate: (transform: translateY(-$toast-height) translateY(0));
+  $leave-blur: (opacity: 0 1, filter: blur($pt-grid-size) blur(0));
+
+  // new toasts slide in from the top
+  @include react-transition-phase(
+      "toast",
+      "enter",
+      $enter-translate,
+      $duration: $pt-transition-duration * 3,
+      $easing: $pt-transition-ease-bounce,
+      $before: "&"
+  );
+  @include react-transition-phase(
+      "toast",
+      "enter",
+      $enter-translate,
+    $duration: $pt-transition-duration * 3,
+    $easing: $pt-transition-ease-bounce,
+    $before: "&",
+    $after: "~ &"
+  );
+  // leaving toasts simply fade away
+  @include react-transition-phase(
+      "toast",
+      "exit",
+      $leave-blur,
+    $duration: $pt-transition-duration * 3,
+    $before: "&"
+  );
+  // younger siblings of leaving toasts wait a moment before moving to fill gap
+  @include react-transition-phase(
+      "toast",
+      "exit",
+      $enter-translate,
+    $delay: $pt-transition-duration / 2,
+    $before: "&",
+    $after: "~ &"
+  );
+  display: flex;
+  align-items: flex-start;
+
+  // override inline styles (#367): toasts rely on relative positioning for stacking.
+  // stylelint-disable-next-line declaration-no-important
+  color: #fff;
+  position: relative !important;
+  margin: $toast-margin 0 0;
+  border-radius: $pt-border-radius;
+  box-shadow: $pt-elevation-shadow-3;
+  background: {
+    color: rgba(flexy-color(text), .9);
+  }
+  min-width: $toast-min-width;
+  max-width: $toast-max-width;
+  cursor: pointer;
+
+  // toast is interactive even though container isn't
+  pointer-events: all;
+
+  &__message {
+    flex: 1 1 auto;
+    padding: centered-text($toast-height);
+  }
+
+  &--success {
+    border-bottom: 4px solid flexy-color(success);
+  }
+
+  &--error {
+    border-bottom: 4px solid flexy-color(error);
+  }
+}
+
+.toast-container {
+  // override inline overlay styles (#2626)
+  // stylelint-disable-next-line declaration-no-important
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+
+  position: fixed;
+  right: 0;
+  left: 0;
+
+  // #975 ensure toasts are on top of everything (esp dialogs)
+  z-index: $pt-z-index-overlay * 2;
+  // toasts have margin-top so omit it on container
+
+  // prevent container from scrolling as new toasts enter (from bottom)
+  overflow: hidden;
+
+  // ensure there's enough space for full box-shadow
+  padding: 0 $toast-margin $toast-margin;
+
+  // container will not block clicks on elements behind it
+  pointer-events: none;
+
+  &.toast-container-top {
+    top: 0;
+    // clear opposite side cuz .overlay has all sides 0'ed
+    bottom: auto;
+  }
+
+  &.toast-container-bottom {
+    flex-direction: column-reverse;
+    top: auto;
+    bottom: 0;
+  }
+
+  &.toast-container-left {
+    align-items: flex-start;
+  }
+
+  &.toast-container-right {
+    align-items: flex-end;
+  }
+}
+
+.toast-container-bottom .toast {
+  // minimal diff in react-transition styles so we can avoid calling those mixins again
+  &.toast-enter:not(.toast-enter-active),
+  &.toast-enter:not(.toast-enter-active) ~ .toast,
+  &.toast-leave-active ~ .toast {
+    transform: translateY($toast-margin + $toast-height);
+  }
+}

@@ -1,0 +1,52 @@
+.b-pagination {
+  display: flex;
+  margin: 1em 0;
+  align-items: center;
+
+  &__list {
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex: 1 0 auto;
+  }
+
+  &__link {
+    border-radius: 3px;
+    text-align: center;
+    height: 32px;
+    min-width: 32px;
+    display: block;
+    padding: .2rem .4em;
+    text-decoration: none;
+    color: flexy-color(text);
+    cursor: pointer;
+    background: {
+      color: #f1f1f1;
+    }
+    margin-right: .5rem;
+
+    &:hover,
+    &--current {
+      color: #fff;
+      background: {
+        color: flexy-color();
+      }
+    }
+
+    &--current {
+      cursor: not-allowed;
+    }
+  }
+
+  &__total {
+    color: flexy-color(placeholder);
+    margin-right: 1rem;
+  }
+
+  &__item {
+    margin: 0 .5rem 0 0;
+  }
+}

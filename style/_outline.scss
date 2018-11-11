@@ -1,0 +1,11 @@
+@if $flexy-default-enable-outline {
+  input,
+  a,
+  button,
+  textarea {
+    &:active {
+      outline-offset: 2px;
+      outline: rgba(flexy-color(), 0.5) solid 3px;
+    }
+  }
+}

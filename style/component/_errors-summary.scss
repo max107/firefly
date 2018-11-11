@@ -1,0 +1,9 @@
+.b-errors-summary {
+  background: {
+    color: flexy-color(error);
+  }
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: $flexy-theme-border-radius;
+}

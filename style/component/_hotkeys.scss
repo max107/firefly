@@ -1,0 +1,43 @@
+.key-combo .key:not(:last-child) {
+  margin-right: $pt-grid-size / 2;
+}
+
+.hotkey {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 0;
+  margin-left: 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(#000, .1);
+    padding-bottom: .4rem;
+    margin-bottom: .4rem;
+  }
+
+  &__dialog {
+    top: $pt-grid-size * 4;
+    padding-bottom: 0;
+  }
+
+  &__label {
+    flex-grow: 1;
+  }
+
+  &__column {
+    margin: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: $pt-grid-size * 3;
+  }
+}
+
+.key {
+  background: {
+    color: #fff;
+  }
+  font-size: .9rem;
+  padding: .2rem .4rem;
+  border-radius: 2px;
+  @include elevation(2);
+}

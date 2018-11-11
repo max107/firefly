@@ -1,0 +1,1 @@
+export { SmartDetailTable } from './SmartDetailTable';

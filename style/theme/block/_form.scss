@@ -1,0 +1,20 @@
+.b-form {
+  &__row {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__help {
+    font-size: 0.9em;
+    color: #aaa;
+  }
+
+  &__pane {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

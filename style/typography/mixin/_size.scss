@@ -1,0 +1,9 @@
+@mixin flexy-sizes($sizes: $flexy-sizes) {
+  @each $key, $value in $sizes {
+    /* stylelint-disable */
+    &--#{$key} {
+      /* stylelint-enable */
+      font-size: $value;
+    }
+  }
+}

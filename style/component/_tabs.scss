@@ -1,0 +1,145 @@
+$tab-color-selected: flexy-color() !default;
+$tab-indicator-width: 2px !default;
+
+.b-tab {
+  @include overflow-ellipsis;
+  @include antialias;
+
+  flex: 0 0 auto;
+  position: relative;
+  cursor: pointer;
+  max-width: 100%;
+  vertical-align: top;
+  line-height: $pt-button-height;
+
+  // support for links in tab titles #363
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__indicator {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $tab-color-selected;
+    height: $tab-indicator-width;
+  }
+
+  &__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0) translateY(0);
+    transition: height, transform, width;
+    transition-duration: $pt-transition-duration * 2;
+    transition-timing-function: $pt-transition-ease;
+    pointer-events: none;
+
+    &--no-animation {
+      transition: none;
+    }
+
+    & ~ & {
+      // these properties are only for static markup, therefore
+      // we never want them if there's a tab indicator
+      // stylelint-disable declaration-no-important
+      box-shadow: none !important;
+      background-color: transparent !important;
+      // stylelint-enable declaration-no-important
+    }
+  }
+
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+    color: $pt-text-color-disabled;
+  }
+
+  &[aria-selected="true"] {
+    border-radius: 0;
+    box-shadow: inset 0 (-$tab-indicator-width) 0 $tab-color-selected;
+  }
+
+  &[aria-selected="true"],
+  &:not([aria-disabled="true"]):hover {
+    color: $tab-color-selected;
+  }
+
+  &:focus {
+    -moz-outline-radius: 0;
+  }
+
+  &__list {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-end;
+    position: relative;
+    margin: 0 0 1rem 0;
+    border: none;
+    padding: 0;
+    list-style: none;
+
+    // this is fine.
+    // stylelint-disable-next-line selector-no-universal
+    > *:not(:last-child) {
+      margin-right: $pt-grid-size * 2;
+    }
+  }
+
+  &__panel {
+    margin-top: $pt-grid-size * 2;
+
+    &[aria-hidden="true"] {
+      display: none;
+    }
+  }
+
+  &__expander {
+    flex: 1 1;
+  }
+
+  &__tabs {
+    &--vertical {
+      display: flex;
+
+      // include '>' to ensure we're only modifying
+      // these tabs, not tabs that might be further
+      // down the DOM hierarchy (i.e. tabs in tabs)
+      > .b-tab__list {
+        min-width: 180px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .b-tab {
+          width: 100%;
+          padding: .2rem 1rem;
+
+          &[aria-selected="true"] {
+            box-shadow: none;
+          }
+        }
+
+        .b-tab__wrapper .b-tab__indicator {
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          border-radius: $flexy-theme-border-radius;
+          background-color: rgba(flexy-color(), .1);
+          height: auto;
+        }
+      }
+
+      // same consideration here: avoid styling any
+      // other tabs that might be contained in this
+      // vertical tab component
+      > .b-tab__panel {
+        margin-top: 0;
+        flex: 1 0 auto;
+        padding-left: 1rem;
+      }
+    }
+  }
+}

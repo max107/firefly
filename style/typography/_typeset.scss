@@ -1,0 +1,24 @@
+/* stylelint-disable */
+%flexy-typeset {
+  @include flexy-rhythm-headings;
+  @include flexy-rhythm-body;
+  @include flexy-rhythm-content;
+
+  img {
+    @include flexy-image;
+  }
+
+  hr {
+    @extend .b-divider;
+  }
+
+  ul,
+  ol {
+    margin-left: 18px;
+  }
+}
+
+.typeset {
+  @extend %flexy-typeset;
+}
+/* stylelint-enable */
