@@ -27,6 +27,10 @@ $popover-width: $pt-grid-size * 35 !default;
     &--minimal {
       padding: 0;
     }
+
+    &--menu {
+      padding: .4rem;
+    }
   }
 
   &__backdrop {
