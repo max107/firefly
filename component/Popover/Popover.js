@@ -20,6 +20,13 @@ export const PopoverInteractionKind = {
 };
 
 export class Popover extends AbstractPureComponent {
+  // a flag that indicates whether the target previously lost focus to another
+  // now that mouseleave is triggered when you cross the gap between the two.
+  isMouseInTargetOrPopover = false;
+
+  // element on the same page.
+  lostFocusOnSamePage = true;
+
   // a flag that lets us detect mouse movement between the target and popover,
   static defaultProps = {
     modifiers: [],
@@ -41,15 +48,11 @@ export class Popover extends AbstractPureComponent {
     wrapperTagName: 'span'
   };
 
-  // a flag that indicates whether the target previously lost focus to another
-  // now that mouseleave is triggered when you cross the gap between the two.
-  isMouseInTargetOrPopover = false;
-  // element on the same page.
-  lostFocusOnSamePage = true;
   state = {
     isOpen: this.getIsOpen(this.props),
     transformOrigin: ''
   };
+
   renderPopover = popperProps => {
     const { usePortal, interactionKind } = this.props;
     const { transformOrigin } = this.state;
@@ -81,6 +84,7 @@ export class Popover extends AbstractPureComponent {
       </div>
     );
   };
+
   refHandlers = {
     popover: ref => {
       this.popoverElement = ref;
@@ -88,6 +92,7 @@ export class Popover extends AbstractPureComponent {
     },
     target: ref => (this.targetElement = ref)
   };
+
   renderTarget = referenceProps => {
     const { targetClassName, targetTagName: TagName } = this.props;
     const { isOpen } = this.state;
@@ -123,6 +128,7 @@ export class Popover extends AbstractPureComponent {
       </ResizeSensor>
     );
   };
+
   handleTargetFocus = e => {
     if (this.props.openOnTargetFocus && this.isHoverInteractionKind()) {
       if (e.relatedTarget == null && !this.lostFocusOnSamePage) {
@@ -133,6 +139,7 @@ export class Popover extends AbstractPureComponent {
       this.handleMouseEnter(e);
     }
   };
+
   handleTargetBlur = e => {
     if (this.props.openOnTargetFocus && this.isHoverInteractionKind()) {
       // if the next element to receive focus is within the popover, we'll want to leave the
@@ -143,6 +150,7 @@ export class Popover extends AbstractPureComponent {
     }
     this.lostFocusOnSamePage = e.relatedTarget != null;
   };
+
   handleMouseEnter = e => {
     this.isMouseInTargetOrPopover = true;
     // if we're entering the popover, and the mode is set to be HOVER_TARGET_ONLY, we want to manually
@@ -157,6 +165,7 @@ export class Popover extends AbstractPureComponent {
       this.setOpenState(true, e, this.props.hoverOpenDelay);
     }
   };
+
   handleMouseLeave = e => {
     this.isMouseInTargetOrPopover = false;
     // wait until the event queue is flushed, because we want to leave the
@@ -170,6 +179,7 @@ export class Popover extends AbstractPureComponent {
       this.setOpenState(false, e, this.props.hoverCloseDelay);
     });
   };
+
   handlePopoverClick = e => {
     const eventTarget = e.target;
     // an OVERRIDE inside a DISMISS does not dismiss, and a DISMISS inside an OVERRIDE will dismiss.
@@ -183,7 +193,9 @@ export class Popover extends AbstractPureComponent {
       }
     }
   };
+
   handlePopoverResize = () => Utils.safeInvoke(this.popperScheduleUpdate);
+
   handleOverlayClose = e => {
     const eventTarget = e.target;
     // if click was in target, target event listener will handle things, so don't close
@@ -191,6 +203,7 @@ export class Popover extends AbstractPureComponent {
       this.setOpenState(false, e);
     }
   };
+
   handleTargetClick = e => {
     // ensure click did not originate from within inline popover before closing
     if (!this.props.disabled && !this.isElementInPopover(e.target)) {
@@ -201,6 +214,7 @@ export class Popover extends AbstractPureComponent {
       }
     }
   };
+
   /** Popper modifier that updates React state (for style properties) based on latest data. */
   updatePopoverState = data => {
     // always set string; let shouldComponentUpdate determine if update is necessary
