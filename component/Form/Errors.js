@@ -24,7 +24,7 @@ export class Errors extends Component {
     } = this.props;
 
     return (errors || []).map((err, i) => (
-      <div className="error" key={i}>{err}</div>
+      <div className="b-errors__error" key={i}>{err}</div>
     ));
   }
 }

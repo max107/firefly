@@ -1,7 +1,7 @@
-.errors {
+.b-errors {
   list-style: none;
 
   &__error {
-    color: #a00;
+    color: flexy-color(error);
   }
 }
