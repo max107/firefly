@@ -7,10 +7,10 @@ export function bem(base, ...mods) {
       .split(' ')
       .filter(n => n)
       .map(modifier => `${base}--${modifier}`);
-    result.push(cx(base, modifiers));
+    result.push(modifiers);
   }
 
-  return result.join(' ');
+  return cx(base, result);
 }
 
 export function theme(base, theme) {
