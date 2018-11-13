@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { CLAMP_MIN_MAX } from '../common/errors';
 
 export * from './compareUtils';

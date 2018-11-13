@@ -1,6 +1,9 @@
-import { AbstractPureComponent, Boundary, Classes, DISPLAYNAME_PREFIX, Menu, MenuItem, Utils } from '@blueprintjs/core';
+import { AbstractPureComponent } from '../AbstractPureComponent';
+import { Boundary } from '../common/boundary';
+import * as Utils from '../utils/utils';
+import { Menu, MenuItem } from '..';
 import classNames from 'classnames';
-import * as React from 'react';
+import React, { createElement } from 'react';
 import ReactDayPicker from 'react-day-picker';
 import * as DateClasses from './common/classes';
 import * as DateUtils from './common/dateUtils';
@@ -15,7 +18,6 @@ import {
   SELECTED_RANGE_MODIFIER
 } from './datePickerCore';
 import { DateRangeSelectionStrategy } from './dateRangeSelectionStrategy';
-import { DayPickerProps } from 'react-day-picker/types/props';
 
 export class DateRangePicker extends AbstractPureComponent {
   constructor(props, context) {
@@ -59,21 +61,21 @@ export class DateRangePicker extends AbstractPureComponent {
       const { dayPickerProps: { disabledDays } } = this.props;
       return disabledDays instanceof Array ? [this.disabledDays, ...disabledDays] : [this.disabledDays, disabledDays];
     };
-    this.renderSingleCaption = (captionProps) => (React.createElement(DatePickerCaption, Object.assign({}, captionProps, {
+    this.renderSingleCaption = (captionProps) => (createElement(DatePickerCaption, Object.assign({}, captionProps, {
       maxDate: this.props.maxDate,
       minDate: this.props.minDate,
       onMonthChange: this.handleLeftMonthSelectChange,
       onYearChange: this.handleLeftYearSelectChange,
       reverseMonthAndYearMenus: this.props.reverseMonthAndYearMenus
     })));
-    this.renderLeftCaption = (captionProps) => (React.createElement(DatePickerCaption, Object.assign({}, captionProps, {
+    this.renderLeftCaption = (captionProps) => (createElement(DatePickerCaption, Object.assign({}, captionProps, {
       maxDate: DateUtils.getDatePreviousMonth(this.props.maxDate),
       minDate: this.props.minDate,
       onMonthChange: this.handleLeftMonthSelectChange,
       onYearChange: this.handleLeftYearSelectChange,
       reverseMonthAndYearMenus: this.props.reverseMonthAndYearMenus
     })));
-    this.renderRightCaption = (captionProps) => (React.createElement(DatePickerCaption, Object.assign({}, captionProps, {
+    this.renderRightCaption = (captionProps) => (createElement(DatePickerCaption, Object.assign({}, captionProps, {
       maxDate: this.props.maxDate,
       minDate: DateUtils.getDateNextMonth(this.props.minDate),
       onMonthChange: this.handleRightMonthSelectChange,
@@ -219,6 +221,7 @@ export class DateRangePicker extends AbstractPureComponent {
     const rightView = !props.contiguousCalendarMonths && rightDate != null && !DateUtils.areSameMonth(initialMonth, rightDate)
       ? MonthAndYear.fromDate(rightDate)
       : leftView.getNextMonth();
+
     this.state = { leftView, rightView, value, hoverValue: [null, null] };
   }
 
@@ -344,15 +347,16 @@ export class DateRangePicker extends AbstractPureComponent {
       ? createDefaultShortcuts(this.props.allowSingleDayRange)
       : propsShortcuts;
     const shortcutElements = shortcuts.map((s, i) => {
-      return (React.createElement(MenuItem, {
-        className: Classes.POPOVER_DISMISS_OVERRIDE,
+      return (createElement(MenuItem, {
+        className: 'b-popover-dismiss-override',
         disabled: !this.isShortcutInRange(s.dateRange),
         key: i,
         onClick: this.getShorcutClickHandler(s.dateRange),
         text: s.label
       }));
     });
-    return React.createElement(Menu, { className: DateClasses.DATERANGEPICKER_SHORTCUTS }, shortcutElements);
+
+    return createElement(Menu, { className: DateClasses.DATERANGEPICKER_SHORTCUTS }, shortcutElements);
   }
 
   getShorcutClickHandler(nextValue) {
@@ -402,7 +406,7 @@ DateRangePicker.defaultProps = {
   reverseMonthAndYearMenus: false,
   shortcuts: true
 };
-DateRangePicker.displayName = `${DISPLAYNAME_PREFIX}.DateRangePicker`;
+DateRangePicker.displayName = `DateRangePicker`;
 
 function getStateChange(value, nextValue, state, contiguousCalendarMonths) {
   let returnVal;

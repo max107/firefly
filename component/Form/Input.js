@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { DateInput } from '../DateTime';
+import { DateRangePicker, DateInput } from '../DateTime';
 import bem from '../bem';
 
 export class Input extends Component {
@@ -77,7 +77,15 @@ export class Input extends Component {
       return (
         <DateInput
           parseDate={dateStr => Date.parse(dateStr)}
-          formatDate={date => `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`}
+          formatDate={date => date.toISOString()}
+          name={name}
+          {...rest} />
+      );
+    }
+
+    if (type === 'daterange') {
+      return (
+        <DateRangePicker
           name={name}
           {...rest} />
       );

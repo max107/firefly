@@ -1,4 +1,3 @@
-import { Icon } from 'firefly/component';
 import * as BlueprintUtils from 'firefly/component/utils/utils';
 import * as React from 'react';
 import * as Classes from './common/classes';
@@ -72,29 +71,22 @@ export class DatePickerCaption extends React.PureComponent {
     this.displayedMonthText = months[displayMonth];
 
     const monthSelect = (
-      <div className={Classes.DATEPICKER_CAPTION_SELECT} key="month">
-        <select
-          className={Classes.DATEPICKER_MONTH_SELECT}
-          onChange={this.handleMonthSelectChange}
-          value={displayMonth.toString()}>
-          {monthOptionElements}
-        </select>
-        <Icon
-          className={Classes.DATEPICKER_CAPTION_CARET}
-          icon="caret-down"
-          style={{ left: this.state.monthWidth + 5 }} />
-      </div>
+      <select
+        key="month"
+        className='b-input b-input--select'
+        onChange={this.handleMonthSelectChange}
+        value={displayMonth.toString()}>
+        {monthOptionElements}
+      </select>
     );
     const yearSelect = (
-      <div className={Classes.DATEPICKER_CAPTION_SELECT} key="year">
-        <select
-          className={Classes.DATEPICKER_YEAR_SELECT}
-          onChange={this.handleYearSelectChange}
-          value={displayYear.toString()}>
-          {yearOptionElements}
-        </select>
-        <Icon className={Classes.DATEPICKER_CAPTION_CARET} icon="caret-down" />
-      </div>
+      <select
+        key="year"
+        className='b-input b-input--select'
+        onChange={this.handleYearSelectChange}
+        value={displayYear.toString()}>
+        {yearOptionElements}
+      </select>
     );
 
     const orderedSelects = this.props.reverseMonthAndYearMenus

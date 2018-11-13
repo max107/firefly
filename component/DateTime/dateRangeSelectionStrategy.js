@@ -1,4 +1,4 @@
-import { Boundary } from '@blueprintjs/core';
+import { Boundary } from '../common/boundary';
 import { areSameDay } from './common/dateUtils';
 
 export class DateRangeSelectionStrategy {

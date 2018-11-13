@@ -54,7 +54,6 @@ $header-margin: ($header-height - $pt-input-height) / 2 !default;
 
   .DayPicker-NavButton {
     position: absolute;
-    top: -$datepicker-header-margin;
     cursor: pointer;
     padding: $datepicker-header-margin + 1;
 
@@ -153,31 +152,13 @@ $header-margin: ($header-height - $pt-input-height) / 2 !default;
     text-align: center;
 
     select {
-      margin: -$datepicker-header-margin 0 $datepicker-header-margin;
-      border: 0;
-      background: none;
-      cursor: pointer;
-      height: $pt-input-height;
-      // increase the size of the click target, clearing the caret on the right.
-      padding-right: $pt-icon-size-standard;
-      padding-left: $pt-grid-size / 2;
-      line-height: $pt-input-height;
-      color: $pt-text-color;
-      font-weight: 600;
-
-      // stylelint-disable property-no-vendor-prefix
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      // stylelint-enable property-no-vendor-prefix
-
-      &:focus + .#{$ns}-datepicker-caption-caret {
-        display: inline;
+      display: inline-block;
+      width: 46%;
+      background: {
+        color: transparent;
       }
-
-      &::-ms-expand {
-        // IE11 styling to hide the arrow
-        display: none;
-      }
+      border: none;
+      box-shadow: none;
     }
   }
 
