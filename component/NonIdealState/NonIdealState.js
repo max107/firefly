@@ -11,7 +11,7 @@ export class NonIdealState extends PureComponent {
   };
 
   static defaultProps = {
-    icon: 'Target',
+    icon: 'X',
     title: null,
     text: null
   };
