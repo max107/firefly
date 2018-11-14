@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import { H1 } from '../Heading';
-import { Icon } from '../Icon';
-import { bem } from '../bem';
+import { Icon, H3, bem } from '..';
 
 export class NonIdealState extends PureComponent {
   static propTypes = {
@@ -28,13 +25,12 @@ export class NonIdealState extends PureComponent {
     } = this.props;
 
     return (
-      <div className='non-ideal-state'>
+      <div className='b-non-ideal-state'>
         <Icon
-          className={bem(cx('non-ideal-state__icon'), modifiers)}
+          className={bem('b-non-ideal-state__icon', modifiers)}
           icon={icon} />
-
-        <H1>{title}</H1>
-        {text && <div className='non-ideal-state__text'>
+        <H3 className='b-non-ideal-state__heading'>{title}</H3>
+        {text && <div className='b-non-ideal-state__text'>
           {text}
         </div>}
       </div>

@@ -2,7 +2,7 @@ $non-ideal-state-icon: flexy-color(error);
 $non-ideal-state-title: flexy-color(text);
 $non-ideal-state-text: flexy-color(placeholder);
 
-.non-ideal-state {
+.b-non-ideal-state {
   &__icon {
     user-select: none;
     margin: 0 auto 1rem;
@@ -20,7 +20,7 @@ $non-ideal-state-text: flexy-color(placeholder);
     }
   }
 
-  &__title {
+  &__heading {
     color: $non-ideal-state-title;
     font-weight: bold;
     font-size: 1.4rem;

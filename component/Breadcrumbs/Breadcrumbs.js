@@ -64,7 +64,7 @@ export class Breadcrumbs extends PureComponent {
         </div>
       ),
       props.to ? (
-        <div key={`${index}-symbol`} className='breadcrumb__symbol'>
+        <div key={`${index}-symbol`} className='b-breadcrumb__symbol'>
           <Icon icon='ChevronRight' />
         </div>
       ) : null

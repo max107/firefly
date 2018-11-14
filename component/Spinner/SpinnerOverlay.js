@@ -22,7 +22,7 @@ export class SpinnerOverlay extends Component {
     return (
       <div className={bem('b-spinner-overlay', { show })}>
         {children}
-        {show && <Spinner modifiers='overlay' />}
+        {Boolean(show) && <Spinner modifiers='overlay' />}
       </div>
     );
   }
