@@ -16,6 +16,7 @@ export {
   H5,
   H6
 } from './Heading';
+export { Transition } from './Transition';
 export { Pagination } from './Pagination';
 export { Table } from './Table';
 export { Popover } from './Popover';

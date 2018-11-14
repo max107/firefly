@@ -1,0 +1,23 @@
+$transition-speed: 600ms;
+
+.fade-enter {
+  opacity: 0;
+  transform: translateZ(0) translateY(-20px);
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: all $transition-speed;
+  transform: translateZ(0) translateY(0);
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateZ(0) translateY(0);
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: all $transition-speed;
+  transform: translateZ(0) translateY(-20px);
+}

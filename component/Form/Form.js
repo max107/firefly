@@ -58,37 +58,128 @@ export class Form extends Component {
     });
   };
 
-  getValueFromEvent = e => {
-    // obj.nativeEvent
-    if (typeof e.target === 'undefined') {
-      return e;
-    }
+  change = (name, type = null) => e => {
+    if (null === type) {
+      const { form } = this.state;
 
-    const { target } = e;
+      if (e instanceof Date) {
+        this.setState({
+          form: {
+            ...form,
+            [name]: e
+          }
+        });
+      } else if (e instanceof Object && typeof e.target !== 'undefined') {
+        const { target } = e;
+        const type = target.getAttribute('type');
 
-    const type = target.getAttribute('type');
-    switch (type) {
-      case 'radio':
-      case 'checkbox':
-        return target.checked;
+        let {
+          value
+        } = target;
 
-      case 'file':
-        return target.getAttribute('multiple') ? target.files : target.files[0];
+        switch (type) {
+          case 'checkbox':
+            value = target.checked;
+            break;
 
-      default:
-        return target.value;
+          case 'file':
+            if (target.getAttribute('multiple')) {
+              value = target.files;
+            } else {
+              value = target.files[0];
+            }
+            break;
+
+          default:
+            break;
+        }
+
+        this.setState({
+          form: {
+            ...form,
+            [name]: value
+          }
+        });
+      } else if (typeof e.target === 'undefined') {
+        this.setState({
+          form: {
+            ...form,
+            [name]: e.value
+          }
+        });
+      }
+    } else {
+      return this.handleChange(name, type)(e);
     }
   };
 
-  change = name => e => {
+  handleChange = (name, type) => e => {
     const { form } = this.state;
 
-    this.setState({
-      form: {
-        ...form,
-        [name]: this.getValueFromEvent(e)
-      }
-    });
+    switch (type) {
+      case 'wysiwyg':
+      case 'ckeditor':
+      case 'tinymce':
+        this.setState({
+          form: {
+            ...form,
+            [name]: e
+          }
+        });
+        break;
+
+      case 'date-range':
+      case 'daterange':
+        this.setState({
+          form: {
+            ...form,
+            [name]: e
+          }
+        });
+        break;
+
+      case 'checkbox':
+      case 'radio':
+        this.setState({
+          form: { ...form, [name]: e.target.checked }
+        });
+        break;
+
+      case 'file':
+        this.setState({
+          form: {
+            ...form,
+            [name]: e.target.getAttribute('multiple')
+              ? e.target.files
+              : e.target.files[0]
+          }
+        });
+        break;
+
+      case 'datetime':
+      case 'date':
+        this.setState({
+          form: { ...form, [name]: e }
+        });
+        break;
+
+      case 'react-select':
+      case 'reactselect':
+        this.setState({
+          form: { ...form, [name]: e.value }
+        });
+        break;
+
+      case 'text':
+      case 'textarea':
+      case 'email':
+      case 'search':
+      default:
+        this.setState({
+          form: { ...form, [name]: e.target.value }
+        });
+        break;
+    }
   };
 
   componentDidMount() {
