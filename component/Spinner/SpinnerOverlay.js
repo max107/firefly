@@ -5,11 +5,15 @@ import { Spinner } from './Spinner';
 
 export class SpinnerOverlay extends Component {
   static propTypes = {
-    children: PropTypes.any.isRequired,
-    show: PropTypes.bool
+    children: PropTypes.any,
+    show: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.number
+    ])
   };
 
   static defaultProps = {
+    children: null,
     show: false
   };
 

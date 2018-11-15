@@ -64,7 +64,10 @@ export class MenuItem extends PureComponent {
     );
 
     const target = (
-      <div onClick={onClick} {...htmlProps} {...(disabled ? DISABLED_PROPS : {})} className={anchorClasses}>
+      <div
+        onClick={onClick}
+        {...htmlProps} {...(disabled ? DISABLED_PROPS : {})}
+        className={anchorClasses}>
         <Icon icon={icon} />
         <div className='b-menu__text'>
           {text}
@@ -118,7 +121,7 @@ export class MenuItem extends PureComponent {
         enforceFocus={false}
         hoverCloseDelay={0}
         interactionKind={PopoverInteractionKind.HOVER}
-        modifiers={SUBMENU_POPOVER_MODIFIERS}
+        popperModifiers={SUBMENU_POPOVER_MODIFIERS}
         position={Position.RIGHT_TOP}
         usePortal={false}
         {...popoverProps}
