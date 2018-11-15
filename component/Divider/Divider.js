@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import { ThemeContext } from '../Theme';
-import { theme } from '../bem';
+import PropTypes from 'prop-types';
+import { bem } from '../bem';
 
 export class Divider extends Component {
-  static contextType = ThemeContext;
+  static propTypes = {
+    modifiers: PropTypes.any
+  };
+
+  static defaultProps = {
+    modifiers: []
+  };
 
   render() {
+    const {
+      modifiers
+    } = this.props;
+
     return (
-      <div className={theme("b-divider", this.context)} />
+      <div className={bem('b-divider', modifiers)} />
     );
   }
 }

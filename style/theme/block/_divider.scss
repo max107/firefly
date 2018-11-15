@@ -1,5 +1,5 @@
 $flexy-block-divider-color: rgba(#000, .1) !default;
-$flexy-block-divider-sizes: (default: 2, large: 3, hero: 4) !default;
+$flexy-block-divider-sizes: (small: 1, default: 2, large: 3, hero: 4) !default;
 
 .b-divider {
   @include clearfix;

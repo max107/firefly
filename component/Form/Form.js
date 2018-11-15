@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { normalizeFloat } from 'firefly-util';
 
 export class Form extends Component {
   static propTypes = {
@@ -27,7 +28,9 @@ export class Form extends Component {
   };
 
   submit = e => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
 
     const {
       onError,
@@ -167,6 +170,12 @@ export class Form extends Component {
       case 'reactselect':
         this.setState({
           form: { ...form, [name]: e.value }
+        });
+        break;
+
+      case 'number':
+        this.setState({
+          form: { ...form, [name]: normalizeFloat(e.target.value) }
         });
         break;
 
