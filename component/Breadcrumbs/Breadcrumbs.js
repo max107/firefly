@@ -24,7 +24,7 @@ export class Breadcrumbs extends PureComponent {
     return [
       (
         <div key='overflow' className='b-breadcrumb__more'>
-          <Popover position={'bottom-left'}>
+          <Popover position='bottom-left' modifiers='minimal'>
             <Icon icon='MoreHorizontal' />
             <Menu>{menuItems}</Menu>
           </Popover>
@@ -75,6 +75,10 @@ export class Breadcrumbs extends PureComponent {
     const {
       breadcrumbs
     } = this.props;
+
+    if (breadcrumbs.length === 0) {
+      return null;
+    }
 
     return (
       <div className="b-breadcrumb">
