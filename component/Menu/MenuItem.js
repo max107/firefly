@@ -68,7 +68,7 @@ export class MenuItem extends PureComponent {
         onClick={onClick}
         {...htmlProps} {...(disabled ? DISABLED_PROPS : {})}
         className={anchorClasses}>
-        <Icon icon={icon} />
+        <Icon className='b-menu__icon' icon={icon} />
         <div className='b-menu__text'>
           {text}
         </div>

@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Icon } from '../Icon';
 import { OverflowList } from '../OverflowList';
 import { Popover } from '../Popover';
 import { Menu, MenuItem } from '../Menu';
 
-export class Breadcrumbs extends PureComponent {
+class BreadcrumbsPure extends PureComponent {
   static propTypes = {
+    history: PropTypes.object.isRequired,
     breadcrumbs: PropTypes.arrayOf(PropTypes.shape({
       to: PropTypes.string,
       icon: PropTypes.string,
@@ -16,9 +17,18 @@ export class Breadcrumbs extends PureComponent {
     })).isRequired
   };
 
+  navigate = to => () => {
+    const { history } = this.props;
+
+    history.push(to);
+  };
+
   renderOverflow = (items) => {
     const menuItems = items.slice().reverse().map((item, index) => (
-      <MenuItem {...item} key={index} />
+      <MenuItem
+        {...item}
+        onClick={this.navigate(item.to)}
+        key={index} />
     ));
 
     return [
@@ -91,3 +101,5 @@ export class Breadcrumbs extends PureComponent {
     );
   }
 }
+
+export const Breadcrumbs = withRouter(BreadcrumbsPure);

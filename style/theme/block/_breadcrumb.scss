@@ -9,13 +9,15 @@ $flexy-theme-breadcrumb-color: flexy-color(placeholder) !default; // Цвет т
 
   &__more {
     background: {
-      color: #f1f1f1;
+      color: rgba(#fff, .1);
     }
+    height: 24px;
+    width: 24px;
     display: flex;
-    border-radius: .275em;
+    border-radius: $flexy-theme-border-radius;
     cursor: pointer;
     align-items: center;
-    width: auto;
+    justify-content: center;
     padding: 0;
     color: $flexy-theme-breadcrumb-color;
   }
