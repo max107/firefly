@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-<<<<<<< HEAD
 import Select from 'react-select';
 import { DateInput, DateRangePicker } from '../DateTime';
-=======
-import { DateRangePicker, DateInput } from '../DateTime';
->>>>>>> 555543acb055abe38d01abc4184464141bbab1f8
 import bem from '../bem';
 
 export class Input extends Component {
@@ -95,7 +91,6 @@ export class Input extends Component {
     if (type === 'daterange') {
       return (
         <DateRangePicker
->>>>>>> 555543acb055abe38d01abc4184464141bbab1f8
           name={name}
           {...rest} />
       );
